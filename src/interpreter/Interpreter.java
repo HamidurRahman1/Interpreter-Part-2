@@ -16,17 +16,28 @@ public abstract class Interpreter extends Parser
 	*/
 
     {
-        setIO( argv[0], argv[1] );
+        setIO( "/Users/hamidurrahman/Downloads/GitHub/Project--Interpreter-Part-2/src/inputs/SourcePogramFunctions.txt",
+                "/Users/hamidurrahman/Downloads/GitHub/Project--Interpreter-Part-2/src/outputs/LexSyntaxErrorOfSourceProgram.txt");
         setLex();
 
         getToken();
         FunDefList funDefList = funDefList();
+
+//        int i = 1;
+//        while (funDefList != null)
+//        {
+//            System.out.print(i++);
+//            System.out.println(" " + ((MultipleFunDef)funDefList).funDef.header.funName);
+//            funDefList = ((MultipleFunDef)funDefList).funDefList;
+//        }
+
         if ( ! t.isEmpty() )
             errorMsg(0);
         else if ( ! syntaxErrorFound )
         {
             closeIO();
-            setIO( argv[2], argv[3] );
+            setIO( "/Users/hamidurrahman/Downloads/GitHub/Project--Interpreter-Part-2/src/inputs/SingleExpression.txt",
+                    "/Users/hamidurrahman/Downloads/GitHub/Project--Interpreter-Part-2/src/outputs/LexSyntaxErrorOf1Expression.txt");
             getToken();
             Exp exp = exp();
             if ( ! t.isEmpty() )
@@ -36,6 +47,7 @@ public abstract class Interpreter extends Parser
                 Val v = exp.Eval(new HashMap<String,Val>());  // evaluate the given expression
                 if ( v != null )
                     System.out.println( v.toString() );   // display the value on the terminal
+                System.out.println("null");
             }
         }
 

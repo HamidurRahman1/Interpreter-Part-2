@@ -8,7 +8,7 @@ public abstract class Parser extends LexAnalyzer
     static final Nil nil = new Nil();
     static final EmptyExpList emptyExpList = new EmptyExpList();
     static boolean syntaxErrorFound = false;
-
+    public static final Map<String, FunDef> funMap = new HashMap<>();
 
     public static FunDefList funDefList()
 
@@ -40,6 +40,7 @@ public abstract class Parser extends LexAnalyzer
                 if ( state == State.RBrace )
                 {
                     getToken();
+                    funMap.put(header.funName, new FunDef(header, exp));
                     return new FunDef(header, exp);
                 }
                 else

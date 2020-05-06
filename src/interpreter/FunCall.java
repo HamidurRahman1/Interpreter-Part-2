@@ -19,7 +19,13 @@ final class FunCall extends FunExp
 
     Val Eval(HashMap<String,Val> state)
     {
-        // You implement body code.
+        System.out.println(Parser.funMap.size());
+
+        FunDef funDef = Parser.funMap.get(func.id);
+
+        System.out.println(funDef.header.funName);
+
+
         return null;
     }
 }
