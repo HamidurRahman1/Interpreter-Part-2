@@ -19,13 +19,26 @@ final class FunCall extends FunExp
 
     Val Eval(HashMap<String,Val> state)
     {
-        System.out.println(Parser.funMap.size());
-
         FunDef funDef = Parser.funMap.get(func.id);
 
-        System.out.println(funDef.header.funName);
+        List<String> params = new LinkedList<>();
 
+        while (funDef.header.parameterList instanceof NonEmptyParameterList)
+        {
+            params.add(((NonEmptyParameterList)funDef.header.parameterList).id);
+            funDef.header.parameterList = ((NonEmptyParameterList) funDef.header.parameterList).parameterList;
+        }
 
-        return null;
+        while (expList instanceof NonEmptyExpList)
+        {
+            Val v = ((NonEmptyExpList) expList).exp.Eval(state);
+            System.out.println(v);
+            if(((NonEmptyExpList) expList).expList instanceof EmptyExpList) break;
+            else expList = ((NonEmptyExpList) expList).expList;
+        }
+
+        int x = Integer.parseInt(((NonEmptyExpList) expList).exp.Eval(state).toString());
+
+        return new IntVal(x);
     }
 }
