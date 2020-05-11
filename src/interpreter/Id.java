@@ -20,16 +20,9 @@ final class Id extends Exp
 
     Val Eval(HashMap<String, Val> state)
     {
-        /*
-           Eval( id, α ) =
-           if id has a value v in α then v   // id is a variable name
-           else if id is a user-defined function name then FunVal(id)
-           else ⊥v
-        */
+        if(state.containsKey(id)) return state.get(id).cloneVal();
 
-        if(state.containsKey(id)) return state.get(id);
-
-
-        return null;
+        if(Parser.funMap.get(id) == null) return null;
+        else return new FunVal(id);
     }
 }
