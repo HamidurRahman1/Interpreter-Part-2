@@ -4,7 +4,9 @@ final class FunVal extends Val
 {
     String funName;
 
-    // You add suitable constructors/functions.
+    public FunVal(String funName) {
+        this.funName = funName;
+    }
 
     @Override
     Val cloneVal() {
