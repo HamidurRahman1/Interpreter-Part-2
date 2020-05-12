@@ -25,4 +25,9 @@ final class Id extends Exp
         if(Parser.funMap.get(id) == null) return null;
         else return new FunVal(id);
     }
+
+    @Override
+    public String toString() {
+        return id;
+    }
 }

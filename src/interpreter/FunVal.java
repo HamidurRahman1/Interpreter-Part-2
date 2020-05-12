@@ -27,4 +27,9 @@ final class FunVal extends Val
     boolean isZero() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return funName;
+    }
 }
